@@ -1,0 +1,36 @@
+# runtime: nodejs20 # Specify your runtime environment
+
+# env: standard
+
+# handlers:
+# - url: /api/.* # Route API requests to your backend
+#   script: auto
+
+# # Serve all static files with URLs that directly match the file path
+#   - url: /(.*\.(gif|png|jpg|css|js|ico|html|txt|svg|woff|ttf|eot|json))
+#     static_files: public/\1
+#     upload: public/(.*\.(gif|png|jpg|css|js|ico|html|txt|svg|woff|ttf|eot|json))
+#     secure: always
+
+#   # Serve your index.html file for all other requests, enabling a client-side routing experience
+#   - url: /.*
+#     static_files: public/browser/index.html
+#     upload: public/browser/index.html
+#     secure: always
+
+runtime: nodejs20
+env: standard
+
+handlers:
+- url: /api/.*
+  script: auto
+  secure: always
+
+- url: /(.*\.(gif|png|jpg|jpeg|css|js|ico|json|svg|woff|woff2|map))$
+  static_files: public/browser/\1
+  upload: public/browser/(.*)
+
+- url: /.*
+  static_files: public/browser/index.html
+  upload: public/browser/index.html
+  secure: always
